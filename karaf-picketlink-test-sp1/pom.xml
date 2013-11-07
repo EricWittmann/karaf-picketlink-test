@@ -7,7 +7,7 @@
   </parent>
   <artifactId>karaf-picketlink-test-sp1</artifactId>
   <packaging>war</packaging>
-  <name>Karaf PicketLink Test SP-1</name>
+  <name>Karaf PicketLink Test :: SP-1</name>
   <description>A Service Provider (1).</description>
   
   <dependencies>

@@ -55,9 +55,20 @@ public class TestServer {
      * @param handlers
      */
     private static void configureJetty(ContextHandlerCollection handlers) throws Exception {
-        File root = new File(".").getCanonicalFile();
+        String rootPath = System.getProperty("karaf-picketlink-test-jetty.root");
+        if (rootPath == null) {
+            rootPath = System.getProperty("basedir");
+        }
+        if (rootPath == null) {
+            rootPath = ".";
+        }
+        File root = new File(rootPath).getCanonicalFile();
+        System.out.println("Attempting to use root path: " + root);
         if (!(new File(root, "root.txt")).exists()) {
-            throw new Exception("Please make sure the CWD is the root of the 'karaf-picketlink-test-jetty' module (there should be a root.txt file there).");
+            throw new Exception(
+                      "Please make sure the CWD is the root of the 'karaf-picketlink-test-jetty' module \n"
+                    + "(there should be a root.txt file there).  Alternatively you can set the following\n"
+                    + "system property:  karaf-picketlink-test-jetty.root");
         }
         
         ServletContextHandler idpCtx = createIDP(root);
