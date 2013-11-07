@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+  version="2.5">
+
+  <display-name>IDP</display-name>
+
+  <session-config>
+    <!-- The SSO session lasts for 8 hours -->
+    <session-timeout>480</session-timeout>
+  </session-config>
+
+  <listener>
+    <listener-class>org.picketlink.identity.federation.web.core.IdentityServer</listener-class>
+  </listener>
+
+  <servlet>
+    <servlet-name>IDPLoginServlet</servlet-name>
+    <servlet-class>org.overlord.test.idp.IDPLoginServlet</servlet-class>
+    <init-param>
+      <param-name>loginClass</param-name>
+      <param-value>org.overlord.test.idp.IDPLoginHandler</param-value>
+    </init-param>
+  </servlet>
+  <servlet>
+    <servlet-name>IDPServlet</servlet-name>
+    <servlet-class>org.overlord.test.idp.IDPServlet</servlet-class>
+    <init-param>
+      <param-name>SIGN_OUTGOING_MESSAGES</param-name>
+      <param-value>false</param-value>
+    </init-param>
+    <init-param>
+      <param-name>ROLE_GENERATOR</param-name>
+      <param-value>org.overlord.test.idp.IDPRoleGenerator</param-value>
+    </init-param>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>IDPLoginServlet</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>IDPServlet</servlet-name>
+    <url-pattern>/IDPServlet</url-pattern>
+  </servlet-mapping>
+
+</web-app>

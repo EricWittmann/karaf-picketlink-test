@@ -1,0 +1,43 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.overlord</groupId>
+    <artifactId>karaf-picketlink-test</artifactId>
+    <version>1.0.0</version>
+  </parent>
+  <artifactId>karaf-picketlink-test-sp2</artifactId>
+  <packaging>war</packaging>
+  <name>Karaf PicketLink Test SP-2</name>
+  <description>A Service Provider (2).</description>
+  
+  <dependencies>
+    <dependency>
+      <groupId>org.picketlink</groupId>
+      <artifactId>picketlink-core</artifactId>
+    </dependency>
+  </dependencies>
+  
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-war-plugin</artifactId>
+        <configuration>
+          <archive>
+            <manifestEntries>
+              <Bundle-ManifestVersion>2</Bundle-ManifestVersion>
+              <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+              <Bundle-Version>${project.version}</Bundle-Version>
+              <Web-ContextPath>/sp2</Web-ContextPath>
+              <Webapp-Context>/sp2</Webapp-Context>
+              <Import-Package>
+                org.picketlink.identity.federation.web.filters
+              </Import-Package>
+            </manifestEntries>
+          </archive>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  
+</project>

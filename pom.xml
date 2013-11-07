@@ -1,0 +1,230 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.jboss.integration-platform</groupId>
+    <artifactId>jboss-integration-platform-bom</artifactId>
+    <version>6.0.0-SNAPSHOT</version>
+  </parent>
+
+  <groupId>org.overlord</groupId>
+  <artifactId>karaf-picketlink-test</artifactId>
+  <version>1.0.0</version>
+  <packaging>pom</packaging>
+
+  <properties>
+    <!-- Instruct the build to use only UTF-8 encoding for source code -->
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
+
+    <!-- Distribution URLs -->
+    <jboss.releases.repo.url>https://repository.jboss.org/nexus/service/local/staging/deploy/maven2/</jboss.releases.repo.url>
+    <jboss.snapshots.repo.url>https://repository.jboss.org/nexus/content/repositories/snapshots/</jboss.snapshots.repo.url>
+
+    <!-- Maven plugin versions -->
+    <maven.surefire.report.plugin.version>2.4.3</maven.surefire.report.plugin.version>
+    <maven.surefire.plugin.version>2.7.1</maven.surefire.plugin.version>
+    <maven.assembly.plugin.version>2.2</maven.assembly.plugin.version>
+    <maven.jar.plugin.version>2.3.1</maven.jar.plugin.version>
+    <maven.war.plugin.version>2.1.1</maven.war.plugin.version>
+    <maven.bundle.plugin.version>2.2.0</maven.bundle.plugin.version>
+    <maven.compiler.plugin.version>2.3.2</maven.compiler.plugin.version>
+    <maven.source.plugin.version>2.1.2</maven.source.plugin.version>
+    <build-helper-maven-plugin.version>1.8</build-helper-maven-plugin.version>
+
+    <!-- JBoss Integration BOM version -->
+    <jboss.integration.bom.version>6.0.0-SNAPSHOT</jboss.integration.bom.version>
+
+    <!-- Third party libraries -->
+    <picketbox.version>4.0.7.Final</picketbox.version>
+    <picketlink.version>2.1.6.Final</picketlink.version>
+    <jboss-as-security.version>7.2.0.Final</jboss-as-security.version>
+    <servlet-api.version>2.5</servlet-api.version>
+    <karaf.version>2.3.3</karaf.version>
+  </properties>
+
+  <modules>
+    <module>karaf-picketlink-test-idp</module>
+    <module>karaf-picketlink-test-sp1</module>
+    <module>karaf-picketlink-test-sp2</module>
+    <module>karaf-picketlink-test-jetty</module>
+  </modules>
+
+  <build>
+    <!-- This section defines the default plugin settings inherited by child projects. -->
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>${maven.compiler.plugin.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-source-plugin</artifactId>
+          <version>${maven.source.plugin.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>${maven.jar.plugin.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-war-plugin</artifactId>
+          <version>${maven.war.plugin.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-assembly-plugin</artifactId>
+          <version>${maven.assembly.plugin.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.felix</groupId>
+          <artifactId>maven-bundle-plugin</artifactId>
+          <version>${maven.bundle.plugin.version}</version>
+          <extensions>true</extensions>
+          <configuration>
+            <supportedProjectTypes>
+              <supportedProjectType>bundle</supportedProjectType>
+              <supportedProjectType>war</supportedProjectType>
+            </supportedProjectTypes>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>build-helper-maven-plugin</artifactId>
+          <version>${build-helper-maven-plugin.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>properties-maven-plugin</artifactId>
+          <version>1.0-alpha-2</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
+    <plugins>
+      <!-- Specify the compiler options and settings -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.6</source>
+          <target>1.6</target>
+          <showDeprecation>false</showDeprecation>
+          <showWarnings>false</showWarnings>
+        </configuration>
+      </plugin>
+      <!-- Produce source jars during the 'verify' phase -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>jar</goal>
+              <goal>test-jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <includes>
+            <include>**/*TestCase.java</include>
+            <include>**/*Test.java</include>
+          </includes>
+          <systemProperties>
+            <property>
+              <name>java.io.tmpdir</name>
+              <value>${basedir}/target</value>
+            </property>
+          </systemProperties>
+          <argLine>-Xmx256M -XX:MaxPermSize=512m</argLine>
+        </configuration>
+      </plugin>
+      <!-- Build a test-jar for each project, so that src/test/* resources and classes can be used in other projects. 
+        Also customize how the jar files are assembled. -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>test-jar</id>
+            <goals>
+              <goal>test-jar</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <archive>
+            <manifest>
+              <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+              <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+            </manifest>
+            <manifestEntries>
+              <Implementation-URL>${project.url}</Implementation-URL>
+            </manifestEntries>
+          </archive>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.picketbox</groupId>
+        <artifactId>picketbox</artifactId>
+        <version>${picketbox.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.picketlink</groupId>
+        <artifactId>picketlink-core</artifactId>
+        <version>${picketlink.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>servlet-api</artifactId>
+        <version>${servlet-api.version}</version>
+        <scope>provided</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <repositories>
+    <repository>
+      <id>jboss-public-repository-group</id>
+      <name>JBoss Public Repository Group</name>
+      <url>http://repository.jboss.org/nexus/content/groups/developer/</url>
+      <layout>default</layout>
+      <releases>
+        <enabled>true</enabled>
+        <updatePolicy>never</updatePolicy>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+        <updatePolicy>daily</updatePolicy>
+      </snapshots>
+    </repository>
+  </repositories>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <id>jboss-public-repository-group</id>
+      <name>JBoss Public Repository Group</name>
+      <url>http://repository.jboss.org/nexus/content/groups/developer/</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>daily</enabled>
+      </snapshots>
+    </pluginRepository>
+  </pluginRepositories>
+</project>

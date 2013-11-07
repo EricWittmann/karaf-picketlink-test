@@ -1,0 +1,74 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.overlord</groupId>
+    <artifactId>karaf-picketlink-test</artifactId>
+    <version>1.0.0</version>
+  </parent>
+  <artifactId>karaf-picketlink-test-jetty</artifactId>
+
+  <properties>
+    <jetty.version>7.6.8.v20121106</jetty.version>
+  </properties>
+
+  <dependencies>
+    <!-- Project Dependencies -->
+    <dependency>
+      <groupId>org.overlord</groupId>
+      <artifactId>karaf-picketlink-test-idp</artifactId>
+      <version>${project.version}</version>
+      <type>war</type>
+    </dependency>
+    <dependency>
+      <groupId>org.overlord</groupId>
+      <artifactId>karaf-picketlink-test-idp</artifactId>
+      <version>${project.version}</version>
+      <classifier>classes</classifier>
+    </dependency>
+  
+    <!-- Jetty -->
+    <dependency>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>jetty-server</artifactId>
+      <version>${jetty.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>jetty-servlet</artifactId>
+      <version>${jetty.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>jetty-jsp</artifactId>
+      <version>${jetty.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>jetty-webapp</artifactId>
+      <version>${jetty.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>jetty-jndi</artifactId>
+      <version>${jetty.version}</version>
+    </dependency>
+
+    <!-- Useful Libraries -->
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-compress</artifactId>
+    </dependency>
+    
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+    </dependency>
+
+  </dependencies>
+
+</project>
