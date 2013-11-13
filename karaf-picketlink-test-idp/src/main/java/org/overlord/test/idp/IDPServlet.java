@@ -19,8 +19,6 @@ package org.overlord.test.idp;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 
-import org.picketlink.identity.federation.web.constants.GeneralConstants;
-
 
 /**
  * 
@@ -39,7 +37,7 @@ public class IDPServlet extends org.picketlink.identity.federation.web.servlets.
         super.init(config);
         
         // Fix a bug in picketlink??
-        config.getServletContext().removeAttribute(GeneralConstants.IDENTITY_SERVER);
+//        config.getServletContext().removeAttribute(GeneralConstants.IDENTITY_SERVER);
 
     }
 }

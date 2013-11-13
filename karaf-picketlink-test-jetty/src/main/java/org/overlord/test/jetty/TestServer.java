@@ -73,9 +73,11 @@ public class TestServer {
         
         ServletContextHandler idpCtx = createIDP(root);
         ServletContextHandler sp1Ctx = createSP1(root);
+        ServletContextHandler sp2Ctx = createSP2(root);
 
         handlers.addHandler(idpCtx);
         handlers.addHandler(sp1Ctx);
+        handlers.addHandler(sp2Ctx);
     }
 
     /**
@@ -99,6 +101,18 @@ public class TestServer {
         System.out.println("SP-1 WAR: " + spWar);
         WebAppContext webapp = new WebAppContext();
         webapp.setContextPath("/sp1");
+        webapp.setWar(spWar.getCanonicalPath());
+        return webapp;
+    }
+
+    /**
+     * @param root
+     */
+    private static ServletContextHandler createSP2(File root) throws Exception {
+        File spWar = new File(root, "../karaf-picketlink-test-sp2/target/karaf-picketlink-test-sp2-1.0.0.war").getCanonicalFile();
+        System.out.println("SP-2 WAR: " + spWar);
+        WebAppContext webapp = new WebAppContext();
+        webapp.setContextPath("/sp2");
         webapp.setWar(spWar.getCanonicalPath());
         return webapp;
     }
