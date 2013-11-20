@@ -19,24 +19,16 @@ package org.overlord.test.jetty;
 import java.io.File;
 import java.io.IOException;
 
-import org.eclipse.jetty.security.ConstraintMapping;
-import org.eclipse.jetty.security.ConstraintSecurityHandler;
 import org.eclipse.jetty.security.HashLoginService;
-import org.eclipse.jetty.security.SecurityHandler;
-import org.eclipse.jetty.security.authentication.BasicAuthenticator;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.ContextHandlerCollection;
 import org.eclipse.jetty.servlet.ServletContextHandler;
-import org.eclipse.jetty.util.security.Constraint;
-import org.eclipse.jetty.util.security.Credential;
 import org.eclipse.jetty.webapp.WebAppContext;
 
 /**
  * @author eric.wittmann@redhat.com
  */
 public class TestServer {
-    
-    private static final String [] USERS = { "admin", "eric", "gary", "kurt" };
     
     /**
      * @param args
@@ -82,7 +74,10 @@ public class TestServer {
                     + "system property:  karaf-picketlink-test-jetty.root");
         }
         
-        server.addBean(createLoginService(root));
+        System.out.println("Setting root.dir to: " + root.toURI().toString());
+        System.setProperty("root.dir", root.toURI().toString());
+        
+//        server.addBean(createLoginService(root));
 
         ServletContextHandler idpCtx = createIDP(root);
         ServletContextHandler sp1Ctx = createSP1(root);
@@ -159,37 +154,9 @@ public class TestServer {
     }
 
     /**
-     * Creates a basic auth security handler.
-     */
-    private static SecurityHandler createBasicSecurityHandler() {
-        HashLoginService l = new HashLoginService();
-        for (String user : USERS) {
-            l.putUser(user, Credential.getCredential(user), new String[] {"user"});
-        }
-        l.setName("overlordrealm");
-
-        Constraint constraint = new Constraint();
-        constraint.setName(Constraint.__BASIC_AUTH);
-        constraint.setRoles(new String[]{"user", "overlorduser"});
-        constraint.setAuthenticate(true);
-
-        ConstraintMapping cm = new ConstraintMapping();
-        cm.setConstraint(constraint);
-        cm.setPathSpec("/*");
-
-        ConstraintSecurityHandler csh = new ConstraintSecurityHandler();
-        csh.setAuthenticator(new BasicAuthenticator());
-        csh.setRealmName("OverlordRealm");
-        csh.addConstraintMapping(cm);
-        csh.setLoginService(l);
-
-        return csh;
-    }
-    
-    /**
      * @param root 
      */
-    private static Object createLoginService(File root) {
+    public static Object createLoginService(File root) {
         File realmProps = new File(root, "src/main/resources/realm.properties");
         if (!realmProps.isFile()) {
             throw new RuntimeException("Failed to find realm.properties.");
