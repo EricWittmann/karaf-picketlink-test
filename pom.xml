@@ -49,6 +49,10 @@
     <module>karaf-picketlink-test-sp1</module>
     <module>karaf-picketlink-test-sp2</module>
     <module>karaf-picketlink-test-jetty</module>
+    <module>karaf-picketlink-test-karaf</module>
+    <module>karaf-picketlink-test-xmlsec</module>
+    <module>karaf-picketlink-test-basic</module>
+    <module>karaf-picketlink-test-form</module>
   </modules>
 
   <build>

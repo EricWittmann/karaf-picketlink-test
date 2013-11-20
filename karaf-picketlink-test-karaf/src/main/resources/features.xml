@@ -1,0 +1,28 @@
+<features xmlns="http://karaf.apache.org/xmlns/features/v1.0.0">
+
+  <!-- Common Dependencies -->
+  <feature name="karaf-picketlink-test-dependencies" version="1.0.0">
+    <feature>http</feature>
+    <feature>war</feature>
+    <bundle>mvn:org.apache.santuario/xmlsec/1.5.1</bundle>
+  </feature>
+
+  <!-- IDP Feature -->
+  <feature name="karaf-picketlink-test-idp" version="1.0.0">
+    <feature version="1.0.0">karaf-picketlink-test-dependencies</feature>
+    <bundle>mvn:org.overlord/karaf-picketlink-test-idp/1.0.0/war</bundle>
+  </feature>
+
+  <!-- SP1 Feature -->
+  <feature name="karaf-picketlink-test-sp1" version="1.0.0">
+    <feature version="1.0.0">karaf-picketlink-test-dependencies</feature>
+    <bundle>mvn:org.overlord/karaf-picketlink-test-sp1/1.0.0/war</bundle>
+  </feature>
+
+  <!-- SP2 Feature -->
+  <feature name="karaf-picketlink-test-sp2" version="1.0.0">
+    <feature version="1.0.0">karaf-picketlink-test-dependencies</feature>
+    <bundle>mvn:org.overlord/karaf-picketlink-test-sp2/1.0.0/war</bundle>
+  </feature>
+  
+</features>

@@ -10,7 +10,7 @@
     <filter-class>org.picketlink.identity.federation.web.filters.SPFilter</filter-class>
     <init-param>
       <param-name>ROLES</param-name>
-      <param-value>sales,manager</param-value>
+      <param-value>overlorduser</param-value>
     </init-param>
     <init-param>
       <param-name>IGNORE_SIGNATURES</param-name>

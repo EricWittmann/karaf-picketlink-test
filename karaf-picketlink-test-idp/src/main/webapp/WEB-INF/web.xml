@@ -16,7 +16,7 @@
 
   <servlet>
     <servlet-name>IDPLoginServlet</servlet-name>
-    <servlet-class>org.overlord.test.idp.IDPLoginServlet</servlet-class>
+    <servlet-class>org.picketlink.identity.federation.web.servlets.IDPLoginServlet</servlet-class>
     <init-param>
       <param-name>loginClass</param-name>
       <param-value>org.overlord.test.idp.IDPLoginHandler</param-value>
@@ -24,7 +24,7 @@
   </servlet>
   <servlet>
     <servlet-name>IDPServlet</servlet-name>
-    <servlet-class>org.overlord.test.idp.IDPServlet</servlet-class>
+    <servlet-class>org.picketlink.identity.federation.web.servlets.IDPServlet</servlet-class>
     <init-param>
       <param-name>SIGN_OUTGOING_MESSAGES</param-name>
       <param-value>false</param-value>
