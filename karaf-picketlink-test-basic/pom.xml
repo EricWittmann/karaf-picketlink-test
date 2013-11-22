@@ -9,4 +9,32 @@
   <packaging>war</packaging>
   <name>Karaf PicketLink Test :: BASIC</name>
 
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-war-plugin</artifactId>
+        <configuration>
+          <attachClasses>true</attachClasses>
+          <classesClassifier>classes</classesClassifier>
+          <archive>
+            <manifestEntries>
+              <Bundle-ManifestVersion>2</Bundle-ManifestVersion>
+              <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+              <Bundle-Version>${project.version}</Bundle-Version>
+              <Web-ContextPath>/basic</Web-ContextPath>
+              <Webapp-Context>/basic</Webapp-Context>
+              <Import-Package>
+                javax.servlet.http,
+                javax.servlet,
+                org.apache.karaf.jaas.boot.principal,
+                org.apache.karaf.jaas.boot,
+                org.eclipse.jetty.plus.jaas
+              </Import-Package>
+            </manifestEntries>
+          </archive>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
 </project>

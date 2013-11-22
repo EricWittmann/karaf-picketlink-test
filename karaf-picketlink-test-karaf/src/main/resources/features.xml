@@ -4,7 +4,6 @@
   <feature name="karaf-picketlink-test-dependencies" version="1.0.0">
     <feature>http</feature>
     <feature>war</feature>
-    <bundle>mvn:org.apache.santuario/xmlsec/1.5.1</bundle>
   </feature>
 
   <!-- IDP Feature -->
@@ -23,6 +22,18 @@
   <feature name="karaf-picketlink-test-sp2" version="1.0.0">
     <feature version="1.0.0">karaf-picketlink-test-dependencies</feature>
     <bundle>mvn:org.overlord/karaf-picketlink-test-sp2/1.0.0/war</bundle>
+  </feature>
+
+  <!-- Basic Auth WAR Feature -->
+  <feature name="karaf-picketlink-test-basic" version="1.0.0">
+    <feature version="1.0.0">karaf-picketlink-test-dependencies</feature>
+    <bundle>mvn:org.overlord/karaf-picketlink-test-basic/1.0.0/war</bundle>
+  </feature>
+
+  <!-- Form Auth WAR Feature -->
+  <feature name="karaf-picketlink-test-form" version="1.0.0">
+    <feature version="1.0.0">karaf-picketlink-test-dependencies</feature>
+    <bundle>mvn:org.overlord/karaf-picketlink-test-form/1.0.0/war</bundle>
   </feature>
   
 </features>

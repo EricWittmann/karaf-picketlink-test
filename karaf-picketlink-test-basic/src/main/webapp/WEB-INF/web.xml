@@ -17,7 +17,7 @@
 
   <login-config>
     <auth-method>BASIC</auth-method>
-    <realm-name>OverlordRealm</realm-name>
+    <realm-name>karaf</realm-name>
   </login-config>
 
   <security-role>

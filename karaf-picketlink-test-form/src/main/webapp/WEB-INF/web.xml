@@ -20,7 +20,7 @@
   <!-- Define the Login Configuration for this Application -->
   <login-config>
     <auth-method>FORM</auth-method>
-    <realm-name>OverlordRealm</realm-name>
+    <realm-name>karaf</realm-name>
     <form-login-config>
       <form-login-page>/login.html</form-login-page>
       <form-error-page>/login-error.html</form-error-page>

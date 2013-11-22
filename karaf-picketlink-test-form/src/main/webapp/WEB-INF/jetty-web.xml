@@ -4,7 +4,7 @@
     <Set name="loginService">
       <New class="org.eclipse.jetty.security.HashLoginService">
         <Set name="name">OverlordRealm</Set>
-        <Set name="config"><SystemProperty name="root.dir" default="." />/src/main/resources/realm.properties</Set>
+        <Set name="config"><SystemProperty name="karaf.home" default="/" />etc/realm.properties</Set>
       </New>
     </Set>
   </Get>
