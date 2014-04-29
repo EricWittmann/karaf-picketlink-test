@@ -33,7 +33,7 @@ public class IDPRoleGenerator implements RoleGenerator {
     @Override
     public List<String> generateRoles(Principal principal) {
         List<String> roles = new ArrayList<String>();
-        roles.add("manager");
+        roles.add("manager"); //$NON-NLS-1$
         return roles;
     }
 

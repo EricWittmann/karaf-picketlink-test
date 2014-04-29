@@ -37,12 +37,11 @@
     <jboss.integration.bom.version>6.0.0-SNAPSHOT</jboss.integration.bom.version>
 
     <!-- Third party libraries -->
-    <picketbox.version>4.0.7.Final</picketbox.version>
-    <picketlink.version>2.1.6.Final</picketlink.version>
-    <jboss-as-security.version>7.2.0.Final</jboss-as-security.version>
-    <servlet-api.version>2.5</servlet-api.version>
+    <picketbox.version>4.0.19.SP4</picketbox.version>
+    <picketlink.version>2.5.3.SP1</picketlink.version>
     <karaf.version>2.3.3</karaf.version>
     <jetty.version>8.1.14.v20131031</jetty.version>
+    <overlord-commons.version>2.0.1-SNAPSHOT</overlord-commons.version>
   </properties>
 
   <modules>
@@ -50,6 +49,7 @@
     <module>karaf-picketlink-test-sp1</module>
     <module>karaf-picketlink-test-sp2</module>
     <module>karaf-picketlink-test-jetty</module>
+    <module>karaf-picketlink-test-fuse6</module>
   </modules>
 
   <build>
@@ -192,6 +192,19 @@
         <version>${project.version}</version>
         <classifier>classes</classifier>
       </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>karaf-picketlink-test-sp1</artifactId>
+        <version>${project.version}</version>
+        <type>war</type>
+      </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>karaf-picketlink-test-sp2</artifactId>
+        <version>${project.version}</version>
+        <type>war</type>
+      </dependency>
+
 
       <dependency>
         <groupId>org.picketbox</groupId>
@@ -200,7 +213,7 @@
       </dependency>
       <dependency>
         <groupId>org.picketlink</groupId>
-        <artifactId>picketlink-core</artifactId>
+        <artifactId>picketlink-federation</artifactId>
         <version>${picketlink.version}</version>
       </dependency>
       <dependency>

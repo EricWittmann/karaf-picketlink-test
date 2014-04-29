@@ -35,7 +35,7 @@ public class TestServer {
      */
     public static void main(String [] args) throws Exception {
         long startTime = System.currentTimeMillis();
-        System.out.println("**** Starting Development Server ****");
+        System.out.println("**** Starting Development Server ****"); //$NON-NLS-1$
 
         ContextHandlerCollection handlers = new ContextHandlerCollection();
         configureJetty(handlers);
@@ -46,7 +46,7 @@ public class TestServer {
         server.setHandler(handlers);
         server.start();
         long endTime = System.currentTimeMillis();
-        System.out.println("******* Started in " + (endTime - startTime) + "ms");
+        System.out.println("******* Started in " + (endTime - startTime) + "ms"); //$NON-NLS-1$ //$NON-NLS-2$
 
         server.join();
     }
@@ -55,20 +55,20 @@ public class TestServer {
      * @param handlers
      */
     private static void configureJetty(ContextHandlerCollection handlers) throws Exception {
-        String rootPath = System.getProperty("karaf-picketlink-test-jetty.root");
+        String rootPath = System.getProperty("karaf-picketlink-test-jetty.root"); //$NON-NLS-1$
         if (rootPath == null) {
-            rootPath = System.getProperty("basedir");
+            rootPath = System.getProperty("basedir"); //$NON-NLS-1$
         }
         if (rootPath == null) {
-            rootPath = ".";
+            rootPath = "."; //$NON-NLS-1$
         }
         File root = new File(rootPath).getCanonicalFile();
-        System.out.println("Attempting to use root path: " + root);
-        if (!(new File(root, "root.txt")).exists()) {
+        System.out.println("Attempting to use root path: " + root); //$NON-NLS-1$
+        if (!(new File(root, "root.txt")).exists()) { //$NON-NLS-1$
             throw new Exception(
-                      "Please make sure the CWD is the root of the 'karaf-picketlink-test-jetty' module \n"
-                    + "(there should be a root.txt file there).  Alternatively you can set the following\n"
-                    + "system property:  karaf-picketlink-test-jetty.root");
+                      "Please make sure the CWD is the root of the 'karaf-picketlink-test-jetty' module \n" //$NON-NLS-1$
+                    + "(there should be a root.txt file there).  Alternatively you can set the following\n" //$NON-NLS-1$
+                    + "system property:  karaf-picketlink-test-jetty.root"); //$NON-NLS-1$
         }
         
         ServletContextHandler idpCtx = createIDP(root);
@@ -85,10 +85,10 @@ public class TestServer {
      * @throws IOException
      */
     private static ServletContextHandler createIDP(File root) throws IOException {
-        File spWar = new File(root, "../karaf-picketlink-test-idp/target/karaf-picketlink-test-idp-1.0.0.war").getCanonicalFile();
-        System.out.println("IDP WAR: " + spWar);
+        File spWar = new File(root, "../karaf-picketlink-test-idp/target/karaf-picketlink-test-idp-1.0.0.war").getCanonicalFile(); //$NON-NLS-1$
+        System.out.println("IDP WAR: " + spWar); //$NON-NLS-1$
         WebAppContext webapp = new WebAppContext();
-        webapp.setContextPath("/idp");
+        webapp.setContextPath("/idp"); //$NON-NLS-1$
         webapp.setWar(spWar.getCanonicalPath());
         return webapp;
     }
@@ -97,10 +97,10 @@ public class TestServer {
      * @param root
      */
     private static ServletContextHandler createSP1(File root) throws Exception {
-        File spWar = new File(root, "../karaf-picketlink-test-sp1/target/karaf-picketlink-test-sp1-1.0.0.war").getCanonicalFile();
-        System.out.println("SP-1 WAR: " + spWar);
+        File spWar = new File(root, "../karaf-picketlink-test-sp1/target/karaf-picketlink-test-sp1-1.0.0.war").getCanonicalFile(); //$NON-NLS-1$
+        System.out.println("SP-1 WAR: " + spWar); //$NON-NLS-1$
         WebAppContext webapp = new WebAppContext();
-        webapp.setContextPath("/sp1");
+        webapp.setContextPath("/sp1"); //$NON-NLS-1$
         webapp.setWar(spWar.getCanonicalPath());
         return webapp;
     }
@@ -109,10 +109,10 @@ public class TestServer {
      * @param root
      */
     private static ServletContextHandler createSP2(File root) throws Exception {
-        File spWar = new File(root, "../karaf-picketlink-test-sp2/target/karaf-picketlink-test-sp2-1.0.0.war").getCanonicalFile();
-        System.out.println("SP-2 WAR: " + spWar);
+        File spWar = new File(root, "../karaf-picketlink-test-sp2/target/karaf-picketlink-test-sp2-1.0.0.war").getCanonicalFile(); //$NON-NLS-1$
+        System.out.println("SP-2 WAR: " + spWar); //$NON-NLS-1$
         WebAppContext webapp = new WebAppContext();
-        webapp.setContextPath("/sp2");
+        webapp.setContextPath("/sp2"); //$NON-NLS-1$
         webapp.setWar(spWar.getCanonicalPath());
         return webapp;
     }
