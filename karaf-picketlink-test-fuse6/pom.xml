@@ -43,6 +43,21 @@
               <outputFile>${project.build.directory}/features.xml</outputFile>
               <attach>true</attach>
               <features>
+                <!-- Just the IDP -->
+                <feature>
+                  <name>karaf-picketlink-test-idp</name>
+                  <version>${project.version}</version>
+                  <comment>Just the IDP</comment>
+                  <dependsOnFeatures>
+                    <feature>
+                      <name>war</name>
+                    </feature>
+                  </dependsOnFeatures>
+                  <includes>
+                    <include>org.overlord:karaf-picketlink-test-idp:war</include>
+                  </includes>
+                </feature>
+
                 <!-- The test WARs -->
                 <feature>
                   <name>karaf-picketlink-test</name>
