@@ -9,6 +9,10 @@ Then point your browser here:
 
     http://localhost:8181/sp1/index.html
 
+Now you can log in with the pre-configured admin user:
+
+admin/admin
+
 
 Testing in Fuse
 ===============
