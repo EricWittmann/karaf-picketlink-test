@@ -1,7 +1,7 @@
-karaf-picketlink-test
-=====================
+Testing in Jetty
+================
 
-To start the server, do this:
+To start the server, *simply* do this:
 
 ----
 mvn clean package -Pjetty
@@ -14,7 +14,7 @@ http://localhost:8181/sp1/index.html
 ----
 
 Testing in Fuse
-~~~~~~~~~~~~~~~
+===============
 
 In Fuse, configure your users/roles in the following file:
 
