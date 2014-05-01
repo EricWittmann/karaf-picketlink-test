@@ -28,9 +28,8 @@ Add some users to this file, for example:
 
 Once this is done, fire up Fuse and run the following commands:
 
-    features:addurl mvn:org.overlord/karaf-picketlink-test-fuse6/VERSION/xml/features
+    features:addurl mvn:org.overlord/karaf-picketlink-test-fuse6/1.0.0/xml/features
     features:install -v karaf-picketlink-test
-
 
 Note: make sure that you have done a maven install from the root of the project so that
 all of the modules are available in the .m2 directory.
