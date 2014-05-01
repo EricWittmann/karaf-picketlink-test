@@ -90,6 +90,7 @@ public class TestServer {
         WebAppContext webapp = new WebAppContext();
         webapp.setContextPath("/idp"); //$NON-NLS-1$
         webapp.setWar(spWar.getCanonicalPath());
+        webapp.getSecurityHandler().setSessionRenewedOnAuthentication(false);
         return webapp;
     }
 
@@ -102,6 +103,7 @@ public class TestServer {
         WebAppContext webapp = new WebAppContext();
         webapp.setContextPath("/sp1"); //$NON-NLS-1$
         webapp.setWar(spWar.getCanonicalPath());
+        webapp.getSecurityHandler().setSessionRenewedOnAuthentication(false);
         return webapp;
     }
 
@@ -114,6 +116,7 @@ public class TestServer {
         WebAppContext webapp = new WebAppContext();
         webapp.setContextPath("/sp2"); //$NON-NLS-1$
         webapp.setWar(spWar.getCanonicalPath());
+        webapp.getSecurityHandler().setSessionRenewedOnAuthentication(false);
         return webapp;
     }
 
