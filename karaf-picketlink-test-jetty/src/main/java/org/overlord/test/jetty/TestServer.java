@@ -90,6 +90,7 @@ public class TestServer {
         WebAppContext webapp = new WebAppContext();
         webapp.setContextPath("/idp"); //$NON-NLS-1$
         webapp.setWar(spWar.getCanonicalPath());
+        webapp.getSecurityHandler().setLoginService(new JettyLoginService());
         webapp.getSecurityHandler().setSessionRenewedOnAuthentication(false);
         return webapp;
     }

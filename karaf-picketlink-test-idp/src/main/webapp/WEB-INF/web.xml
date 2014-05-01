@@ -3,45 +3,63 @@
   xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
   version="2.5">
 
-  <display-name>IDP</display-name>
+  <display-name>PicketLink Identity Provider</display-name>
 
-  <session-config>
-    <!-- The SSO session lasts for 8 hours -->
-    <session-timeout>480</session-timeout>
-  </session-config>
+  <description>PicketLink Identity Provider Using a Servlet Filter</description>
 
   <listener>
-    <listener-class>org.picketlink.identity.federation.web.core.IdentityServer</listener-class>
+    <listener-class>org.picketlink.identity.federation.web.listeners.IDPHttpSessionListener</listener-class>
   </listener>
 
-  <servlet>
-    <servlet-name>IDPLoginServlet</servlet-name>
-    <servlet-class>org.overlord.test.idp.IDPLoginServlet</servlet-class>
-    <init-param>
-      <param-name>loginClass</param-name>
-      <param-value>org.overlord.test.idp.IDPLoginHandler</param-value>
-    </init-param>
-  </servlet>
-  <servlet>
-    <servlet-name>IDPServlet</servlet-name>
-    <servlet-class>org.overlord.test.idp.IDPServlet</servlet-class>
-    <init-param>
-      <param-name>SIGN_OUTGOING_MESSAGES</param-name>
-      <param-value>false</param-value>
-    </init-param>
-    <init-param>
-      <param-name>ROLE_GENERATOR</param-name>
-      <param-value>org.overlord.test.idp.IDPRoleGenerator</param-value>
-    </init-param>
-  </servlet>
+  <filter>
+    <filter-name>IDPFilter</filter-name>
+    <filter-class>org.picketlink.identity.federation.web.filters.IDPFilter</filter-class>
+  </filter>
 
-  <servlet-mapping>
-    <servlet-name>IDPLoginServlet</servlet-name>
-    <url-pattern>/</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>IDPServlet</servlet-name>
-    <url-pattern>/IDPServlet</url-pattern>
-  </servlet-mapping>
+  <filter-mapping>
+    <filter-name>IDPFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
 
+  <!-- Define a security constraint that gives unlimited access to resources -->
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>Resources</web-resource-name>
+      <url-pattern>/resources/*</url-pattern>
+    </web-resource-collection>
+  </security-constraint>
+
+  <!-- Define a Security Constraint on the IDP -->
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>Manager command</web-resource-name>
+      <url-pattern>/*</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>manager</role-name>
+      <role-name>sales</role-name>
+      <role-name>employee</role-name>
+    </auth-constraint>
+  </security-constraint>
+
+  <!-- Define the Login Configuration for this Application -->
+  <login-config>
+    <auth-method>FORM</auth-method>
+    <realm-name>PicketLink IDP Application</realm-name>
+    <form-login-config>
+      <form-login-page>/jsp/login.jsp</form-login-page>
+      <form-error-page>/jsp/login-error.jsp</form-error-page>
+    </form-login-config>
+  </login-config>
+
+  <!-- Security roles referenced by this web application -->
+  <security-role>
+    <role-name>manager</role-name>
+  </security-role>
+  <security-role>
+    <role-name>sales</role-name>
+  </security-role>
+  <security-role>
+    <role-name>employee</role-name>
+  </security-role>
 </web-app>
