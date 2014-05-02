@@ -50,6 +50,7 @@
     <module>karaf-picketlink-test-sp2</module>
     <module>karaf-picketlink-test-jetty</module>
     <module>karaf-picketlink-test-fuse6</module>
+    <module>overlord-welcome</module>
   </modules>
 
   <build>
@@ -205,6 +206,11 @@
         <type>war</type>
       </dependency>
 
+      <dependency>
+        <groupId>org.overlord</groupId>
+        <artifactId>overlord-welcome</artifactId>
+        <version>${project.version}</version>
+      </dependency>
 
       <dependency>
         <groupId>org.picketbox</groupId>
