@@ -37,8 +37,8 @@
     <jboss.integration.bom.version>6.0.0-SNAPSHOT</jboss.integration.bom.version>
 
     <!-- Third party libraries -->
-    <picketbox.version>4.0.19.SP4</picketbox.version>
-    <picketlink.version>2.5.3.SP1</picketlink.version>
+    <picketbox.version>4.0.19.SP5</picketbox.version>
+    <picketlink.version>2.5.3.SP4</picketlink.version>
     <karaf.version>2.3.3</karaf.version>
     <jetty.version>8.1.14.v20131031</jetty.version>
     <overlord-commons.version>2.0.1-SNAPSHOT</overlord-commons.version>
