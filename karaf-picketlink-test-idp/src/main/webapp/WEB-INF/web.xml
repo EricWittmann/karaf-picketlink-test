@@ -47,8 +47,8 @@
     <auth-method>FORM</auth-method>
     <realm-name>karaf</realm-name>
     <form-login-config>
-      <form-login-page>/jsp/login.jsp</form-login-page>
-      <form-error-page>/jsp/login-error.jsp</form-error-page>
+      <form-login-page>/login.html</form-login-page>
+      <form-error-page>/login-error.html</form-error-page>
     </form-login-config>
   </login-config>
 

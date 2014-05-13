@@ -3,12 +3,11 @@
         ServerEnvironment="jetty"
         BindingType="REDIRECT" 
         RelayState="">
-    <IdentityURL>${idp.url::http://localhost:8181/idp/}</IdentityURL>
-    <ServiceURL>${sp1.url::http://localhost:8181/sp1/}</ServiceURL>
+    <IdentityURL>${idp.url::/overlord-idp/}</IdentityURL>
+    <ServiceURL>${sp1.url::/sp1/}</ServiceURL>
   </PicketLinkSP>
   <Handlers xmlns="urn:picketlink:identity-federation:handler:config:2.1">
     <Handler class="org.picketlink.identity.federation.web.handlers.saml2.SAML2LogOutHandler" />
     <Handler class="org.picketlink.identity.federation.web.handlers.saml2.SAML2AuthenticationHandler" />
-    <Handler class="org.picketlink.identity.federation.web.handlers.saml2.RolesGenerationHandler" />
   </Handlers>
 </PicketLink>

@@ -28,6 +28,8 @@ import org.eclipse.jetty.webapp.WebAppContext;
  * @author eric.wittmann@redhat.com
  */
 public class TestServer {
+
+    private static final int PORT = 7070;
     
     /**
      * @param args
@@ -41,7 +43,7 @@ public class TestServer {
         configureJetty(handlers);
 
         // Create the server.
-        int serverPort = 8181;
+        int serverPort = PORT;
         Server server = new Server(serverPort);
         server.setHandler(handlers);
         server.start();
