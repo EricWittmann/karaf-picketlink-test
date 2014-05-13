@@ -3,7 +3,7 @@
         ServerEnvironment="jetty"
         BindingType="REDIRECT" 
         RelayState="">
-    <IdentityURL>${idp.url::/overlord-idp/}</IdentityURL>
+    <IdentityURL>${idp.url::/idp/}</IdentityURL>
     <ServiceURL>${sp1.url::/sp1/}</ServiceURL>
   </PicketLinkSP>
   <Handlers xmlns="urn:picketlink:identity-federation:handler:config:2.1">
