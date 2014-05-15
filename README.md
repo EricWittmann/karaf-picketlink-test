@@ -14,8 +14,8 @@ Now you can log in with the pre-configured admin user:
 admin/admin
 
 
-Testing in Fuse
-===============
+Testing in Fuse 6.1
+===================
 
 In Fuse, configure your users/roles in the following file:
 
